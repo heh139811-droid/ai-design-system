@@ -1,5 +1,17 @@
 # v0.1 검증 결과 · 2026-11-17
 
+## React 패키지
+
+- `/react` ESM·TypeScript 선언과 `/react/styles.css` 생성. 브랜드 CSS·기존 CSS·system.json 수치를 포함한 단일 스타일 진입점을 제공한다. 새 브랜드 색은 추가하지 않았다.
+- 12종 UI와 BrandProvider, RadioGroup을 구현했다. 모달·탭·스위치는 Radix 기반이고 나머지 폼은 native HTML을 사용한다.
+- 기존 Node 검사 16개와 React DOM 검사 8개 통과. 폼 값·reset, 체크박스 Space, 라디오 방향키, disabled/loading, 라벨·hint·오류 연결, 탭 방향키/Home/End, 모달 focus trap/Escape/실행 버튼 복귀/포털 다크 테마를 검사했다.
+- axe 구조 검사 위반 0건. color-contrast는 JSDOM에서 제외했다. 단색 대비는 기존 토큰 검사를 사용한다.
+- 실제 tarball을 `.artifact-tmp/react18`(React 18.2.0), `.artifact-tmp/react19`(React 19.3.1)에 독립 설치했다. 두 소비 프로젝트 모두 타입 검사·DOM 검사 8개·window/document 없는 별도 Node 프로세스 SSR 통과.
+- `npm run build`, `npm run check` 통과. 소비자 타입 검사는 잘못된 Button variant와 라벨 없는 Input을 컴파일 오류로 확인한다.
+- `dist/react-demo/index.html`은 React·스타일이 로컬 파일로 포함된 오프라인 예제다. 브라우저 자동화는 사용자 입력 충돌을 감지해 중단했으며 실제 Chrome 화면·반응형·시각 대비·OS native select·스크린리더 검증은 미완료다.
+- Next.js 전체 앱 빌드는 미실행이다. `'use client'` ESM 보존과 브라우저 객체 없는 SSR을 검사한 범위다.
+- `.artifact-tmp/wonjeongdae-design-system-0.1.0.tgz` 생성·설치 검증 완료. npm 레지스트리 게시·Git 원격 푸시·소비 서비스 최초 마이그레이션은 하지 않았다.
+
 ## 구조 개정 2 · Foundations / Components / Patterns
 
 - 브랜드 원본 6색·권장 비율은 유지했다. `tokens/system.json`에 간격·모서리·사이즈·타이포그래피·레이아웃·컴포넌트 규칙을 구현 제안으로 분리했다.

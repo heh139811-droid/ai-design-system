@@ -5,6 +5,7 @@
 1. DESIGN.md와 tokens.json(레포에서는 tokens/brand.json)을 읽는다. 버전/커밋을 기록한다.
 2. 대상 프로젝트의 AGENTS.md와 스타일 진입점, 프레임워크, 기존 토큰, 전역 CSS·UI 라이브러리를 확인한다.
 3. 패키지 import 또는 init으로 복사한 brand.css와 components.css를 전역 스타일 진입점에서 한 번 불러온다. 임의 CSS reset을 추가하지 않는다.
+   React 신규 적용은 docs/REACT.md에 따라 패키지의 `/react`와 `/react/styles.css`를 사용하고 BrandProvider로 감쌀 수 있다. 이 CSS에는 브랜드·기본 CSS가 포함돼 있어 별도 중복 import는 필요 없다. init CLI는 기존 CSS 복사 도구이며 React 패키지 설치를 대신하지 않는다.
 4. 앱 루트 또는 특정 영역에 data-wj-brand를 넣고 data-wj-theme="light" 또는 "dark"를 명시한다. data-theme 같은 대상 앱의 속성을 덮어쓰지 않는다.
 5. 기존 background/text/primary/border 토큰을 --wj-background/--wj-text/--wj-accent/--wj-border에 매핑한다. 버튼 글자는 --wj-on-accent로 연결한다.
 6. 기존 UI 구조와 동작을 유지하며 하드코딩된 브랜드 색을 매핑한다. 임의로 전체 button/input 선택자에 !important를 덮어쓰지 않는다.

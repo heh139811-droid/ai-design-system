@@ -38,7 +38,7 @@
 
 Button의 기본 hover/pressed 전환, Checkbox/Switch 토글, Radio 선택, Tabs 전환은 Figma 프로토타입 예시다. Disabled/Loading에는 행동을 연결하지 않는다. 브라우저·스크린리더·입력 데이터 처리 기능으로 설명하지 않는다.
 
-모든 컴포넌트의 상세 규칙은 `system.json`에 있으며 Figma 사용 문서로도 생성된다. 웹 CSS가 제공하는 클래스는 Button/Input/Card/Badge 등 기존 범위다. 모든 Figma 컴포넌트에 대응하는 React·Vue 구현이 있다고 주장하지 않는다.
+모든 컴포넌트의 상세 규칙은 `system.json`에 있으며 Figma 사용 문서로도 생성된다. `/react`에는 같은 12종의 React 구현과 타입·동작을 제공한다. Figma의 모든 표시 옵션이나 변형이 React API와 1:1인 것은 아니다. Vue 전용 컴포넌트는 제공하지 않는다. 기존 CSS 전용 클래스 범위와 React 진입점을 구분한다. 설치·속성·마이그레이션은 REACT.md를 따른다.
 
 ## 접근성·콘텐츠 계약
 

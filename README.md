@@ -25,7 +25,7 @@
 
 ## 개발자: 수정과 실행
 
-개발·검사는 Node.js 20 이상과 `npm ci`가 필요합니다. Figma API 검사는 공식 타입 정의와 TypeScript를 사용합니다. 배포된 START.html 사용에는 설치가 필요 없습니다.
+개발·검사는 Node.js 22.22 이상과 `npm ci`가 필요합니다. Figma API 검사는 공식 타입 정의와 TypeScript를 사용합니다. 배포된 START.html 사용에는 설치가 필요 없습니다.
 
 ```bash
 npm ci
@@ -40,6 +40,8 @@ npm run dev
 색상 원본은 tokens/brand.json입니다. 허브와 다운로드 ZIP, 생성 CSS 모두 같은 원본을 사용합니다.
 
 ## 다른 프로젝트의 웹 UI에 사용
+
+React에서는 [React 개발자 가이드](docs/REACT.md)를 따르세요. 설치 가능한 패키지의 `@wonjeongdae/design-system/react`에서 12종 컴포넌트와 BrandProvider를 제공하며, `react/styles.css` 한 번으로 스타일을 연결합니다. [오프라인 React 예제](dist/react-demo/index.html)도 포함합니다. npm 레지스트리 게시와 원격 푸시 완료는 별도로 확인해야 합니다.
 
 아래 Git 의존성은 레포 읽기 권한과 Git 인증이 필요합니다. 실제 운영에서는 검증한 커밋 또는 발행한 버전 태그를 고정하세요.
 

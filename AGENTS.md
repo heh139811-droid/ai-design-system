@@ -16,3 +16,4 @@
 - UI는 비개발자에게 색상 확인·요청문 복사·자료 전달·의견 제안의 행동을 안내한다.
 - Figma 생성 도구 소스는 src/figma-kit.js이며 dist/figma/*는 생성물이다. config/hub.json의 figmaLibraryUrl은 실제 공유 파일 주소가 있을 때만 설정한다.
 - Figma 도구 생성과 실제 파일 실행·팀 라이브러리 게시를 구분해서 보고한다. 담당자의 최초 등록·생성·검토·공유가 필요하다.
+- React 소스는 src/react/*, 생성물은 dist/react/*이며 소비 가이드는 docs/REACT.md다. 패키지 설치·동작 검사와 npm 게시·원격 푸시·실제 서비스 마이그레이션을 구분해서 보고한다.
