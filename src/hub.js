@@ -2,6 +2,14 @@ const data = JSON.parse(document.getElementById('brand-data').textContent);
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-version]').forEach(el => {el.textContent=data.version;});
 document.querySelectorAll('[data-repo]').forEach(el => {el.href=REPOSITORY;});
+if(data.config.figmaLibraryUrl) {
+  $('figmaLibraryLink').href=data.config.figmaLibraryUrl;
+  $('figmaLibraryLink').hidden=false;
+  $('figmaLibraryStatus').textContent='공유 파일 연결됨';
+  $('figmaTaskStatus').textContent='공유 파일 열기';
+  const taskLink=document.querySelector('.task-card a');taskLink.href=data.config.figmaLibraryUrl;taskLink.target='_blank';taskLink.rel='noopener noreferrer';taskLink.textContent='공유 Figma 파일 열기 ↗';
+  $('figmaConnectionNote').textContent='공유 파일에 접근하려면 Figma 로그인과 파일 권한이 필요할 수 있습니다. 파일 복제본은 원본 변경이 자동 반영되지 않습니다.';
+}
 let toastTimer;
 function notify(message) {clearTimeout(toastTimer);$('toast').textContent=message;$('toast').hidden=false;toastTimer=setTimeout(()=>{$('toast').hidden=true;},3500);}
 async function copy(text, message) {
@@ -42,13 +50,16 @@ $('requestForm').addEventListener('change',updatePrompt);
 $('requestForm').addEventListener('submit',event=>event.preventDefault());
 $('copyPrompt').addEventListener('click',()=>copy($('prompt').value,'요청문 복사 완료 · 브랜드 ZIP과 함께 AI에 전달하세요.'));
 $('closeManualCopy').addEventListener('click',()=>{$('manualCopyPanel').hidden=true;$('copyPrompt').focus();});
-document.querySelectorAll('[data-download]').forEach(button=>button.addEventListener('click',()=>{
+function downloadZip(files,filename) {
   try {
-    const files={...data.files,'AI-적용요청.txt':$('prompt').value};
     const bytes=zipFiles(files),url=URL.createObjectURL(new Blob([bytes],{type:'application/zip'}));
-    const link=document.createElement('a');link.href=url;link.download=`wonjeongdae-brand-kit-v${data.version}.zip`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);notify('브랜드 자료 다운로드를 요청했습니다. 브라우저 다운로드 목록을 확인하세요.');
+    const link=document.createElement('a');link.href=url;link.download=filename;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);notify('다운로드를 요청했습니다. 브라우저 다운로드 목록을 확인하세요.');
   } catch {notify('다운로드를 시작하지 못했습니다. 공통 레포에서 자료를 받아 주세요.');}
-}));
+}
+document.querySelectorAll('[data-download]').forEach(button=>button.addEventListener('click',()=>downloadZip({...data.files,'AI-적용요청.txt':$('prompt').value},`wonjeongdae-brand-kit-v${data.version}.zip`)));
+document.querySelectorAll('[data-figma-download]').forEach(button=>button.addEventListener('click',()=>downloadZip(data.figmaFiles,`wonjeongdae-figma-kit-v${data.version}.zip`)));
+$('copyFigmaGuide').addEventListener('click',()=>copy(data.figmaFiles['README.md'],'Figma 최초 설정 안내를 복사했습니다.'));
+$('figmaSetupLink').addEventListener('click',()=>{$('figmaSetup').open=true;});
 $('feedbackForm').addEventListener('submit',event=>{
   event.preventDefault();if(!$('feedbackForm').reportValidity())return;
   const url=makeIssueUrl($('feedbackTitle').value,$('feedbackBody').value,data.version);

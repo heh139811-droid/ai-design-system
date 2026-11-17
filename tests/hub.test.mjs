@@ -31,3 +31,32 @@ test('offline hub embeds current tokens and source, with valid JS and matching h
   const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)];assert.equal(scripts.length,1);new vm.Script(scripts[0][1]);
   assert.doesNotMatch(html,/<(?:script|link)[^>]+(?:src|href)=["']https?:/i);
 });
+
+test('hub boots offline, downloads Figma ZIP and exposes connected library without sending a request',async()=>{
+  const html=await readFile(new URL('../START.html',import.meta.url),'utf8');
+  const embedded=JSON.parse(html.match(/<script id="brand-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+  const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  for(const connected of [false,true]) {
+    const elements=new Map();const links=[];const blobs=[];
+    function element(){return {textContent:'',value:'',hidden:true,dataset:{},style:{},listeners:{},children:[],setAttribute(){},append(...nodes){this.children.push(...nodes);},addEventListener(name,fn){this.listeners[name]=fn;},focus(){},select(){},click(){links.push(this);},remove(){},reportValidity(){return true;}};}
+    const get=id=>{if(!elements.has(id))elements.set(id,element());return elements.get(id);};
+    const data=structuredClone(embedded);data.config.figmaLibraryUrl=connected?'https://www.figma.com/design/example/Library':'';
+    get('brand-data').textContent=JSON.stringify(data);
+    const groups=new Map(['[data-version]','[data-repo]','[data-preview-theme]','[data-download]','[data-figma-download]'].map(s=>[s,[element()]]));
+    const task=element();
+    const doc={getElementById:get,querySelectorAll:s=>groups.get(s)||[],querySelector:s=>task,createElement:()=>element(),body:element()};
+    class CapturedBlob {constructor(parts,options){blobs.push({parts,options});}}
+    class LocalFormData {entries(){return Object.entries({project:'팀 웹',kind:'web',stage:'existing',theme:'light'});}}
+    const url={createObjectURL:()=> 'blob:offline-kit',revokeObjectURL(){}};
+    vm.runInNewContext(script,{document:doc,navigator:{},setTimeout(){},clearTimeout(){},FormData:LocalFormData,Blob:CapturedBlob,URL:url,TextEncoder,Uint8Array,DataView});
+    assert.match(get('prompt').value,/팀 웹/);
+    groups.get('[data-figma-download]')[0].listeners.click();
+    assert.equal(links.at(-1).download,`wonjeongdae-figma-kit-v${data.version}.zip`);
+    const bytes=blobs.at(-1).parts[0];assert.equal(new DataView(bytes.buffer).getUint32(0,true),0x04034b50);
+    assert.match(new TextDecoder().decode(bytes),/manifest.json/);
+    get('figmaSetupLink').listeners.click();assert.equal(get('figmaSetup').open,true);
+    await get('copyFigmaGuide').listeners.click();assert.equal(get('manualCopyPanel').hidden,false);assert.match(get('manualCopy').value,/담당자 최초 설정/);
+    if(connected){assert.equal(get('figmaLibraryLink').hidden,false);assert.equal(task.href,data.config.figmaLibraryUrl);}
+    else assert.equal(get('figmaLibraryLink').hidden,true);
+  }
+});
