@@ -1,0 +1,36 @@
+{
+  "name": "@wonjeongdae/design-system",
+  "version": "0.1.0",
+  "description": "원정대 공통 브랜드 토큰, 테마, 웹 스타일 및 AI 적용 계약",
+  "private": true,
+  "type": "module",
+  "files": [
+    "tokens",
+    "docs",
+    "AGENTS.md",
+    "DESIGN.md",
+    "README.md",
+    "scripts/apply.mjs",
+    "dist",
+    "START.html"
+  ],
+  "exports": {
+    "./tokens.json": "./tokens/brand.json",
+    "./brand.css": "./dist/brand.css",
+    "./components.css": "./dist/components.css",
+    "./agent-guide": "./docs/APPLY.md"
+  },
+  "bin": {
+    "wonjeongdae-brand": "./scripts/apply.mjs"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs && node scripts/build-hub.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/build.mjs --check && node scripts/build-hub.mjs --check",
+    "prepack": "npm run build && npm test",
+    "dev": "node scripts/serve.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
