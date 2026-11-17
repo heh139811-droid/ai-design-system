@@ -25,9 +25,10 @@ Variables·5종 컴포넌트·라이트/다크 6개 화면을 생성합니다. [
 
 ## 개발자: 수정과 실행
 
-Node.js 20 이상만 필요하며 외부 패키지 설치는 필요 없습니다.
+개발·검사는 Node.js 20 이상과 `npm ci`가 필요합니다. Figma API 검사는 공식 타입 정의와 TypeScript를 사용합니다. 배포된 START.html 사용에는 설치가 필요 없습니다.
 
 ```bash
+npm ci
 npm run build
 npm test
 npm run check
