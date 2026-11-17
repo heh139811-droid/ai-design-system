@@ -2,6 +2,14 @@ const data = JSON.parse(document.getElementById('brand-data').textContent);
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-version]').forEach(el => {el.textContent=data.version;});
 document.querySelectorAll('[data-repo]').forEach(el => {el.href=REPOSITORY;});
+const system=JSON.parse(data.figmaFiles['system.json']);
+for(const [name,spec] of Object.entries(system.components)) {
+  const entry=document.createElement('details'),summary=document.createElement('summary');summary.textContent=name;entry.append(summary);
+  for(const [label,value] of Object.entries({'용도':spec.purpose,'구조':spec.anatomy,'사용 규칙':spec.rules,'접근성':spec.accessibility,'반응형':spec.responsive})) {
+    const p=document.createElement('p');p.textContent=`${label}: ${value}`;entry.append(p);
+  }
+  $('catalog').append(entry);
+}
 if(data.config.figmaLibraryUrl) {
   $('figmaLibraryLink').href=data.config.figmaLibraryUrl;
   $('figmaLibraryLink').hidden=false;

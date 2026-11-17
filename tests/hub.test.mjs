@@ -55,7 +55,7 @@ test('hub boots offline, downloads Figma ZIP and exposes connected library witho
     const bytes=blobs.at(-1).parts[0];assert.equal(new DataView(bytes.buffer).getUint32(0,true),0x04034b50);
     assert.match(new TextDecoder().decode(bytes),/manifest.json/);
     get('figmaSetupLink').listeners.click();assert.equal(get('figmaSetup').open,true);
-    await get('copyFigmaGuide').listeners.click();assert.equal(get('manualCopyPanel').hidden,false);assert.match(get('manualCopy').value,/담당자 최초 설정/);
+    await get('copyFigmaGuide').listeners.click();assert.equal(get('manualCopyPanel').hidden,false);assert.match(get('manualCopy').value,/처음 등록한다면/);
     if(connected){assert.equal(get('figmaLibraryLink').hidden,false);assert.equal(task.href,data.config.figmaLibraryUrl);}
     else assert.equal(get('figmaLibraryLink').hidden,true);
   }
