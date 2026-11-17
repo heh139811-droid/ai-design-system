@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>원정대 브랜드 시스템 · 라이트/다크</title>
+<link rel="stylesheet" href="../dist/brand.css">
+<link rel="stylesheet" href="../dist/components.css">
+<style>
+body { margin:0; } h1,h2,p {margin:0} .preview-section{padding-block:3rem} .hero{display:grid;gap:1.5rem;max-width:48rem} h1{font-size:clamp(2rem,5vw,3.5rem)} .swatch{height:5rem;border-radius:.75rem;border:1px solid var(--wj-border)} .caption{font-size:.875rem} .row{display:flex;gap:1rem;flex-wrap:wrap;align-items:center} label{display:grid;gap:.5rem} .wj-brand-art{position:relative;overflow:hidden}.wj-brand-art::after{content:'';position:absolute;width:12rem;height:12rem;border:3rem solid var(--wj-color-deep-green);border-radius:50%;right:-4rem;top:-4rem}
+</style>
+<body>
+<main>
+<section data-wj-brand data-wj-theme="light" class="preview-section">
+  <div class="wj-container wj-stack">
+    <div class="row"><strong>원정대</strong><span class="wj-badge">브랜드 시스템 v0.1 · 라이트</span></div>
+    <div class="hero"><p>IDEAS · PEOPLE · BRANDS</p><h1 class="wj-heading">사람과 브랜드가 만나는<br><span class="wj-brand-heading">더 큰 가능성</span></h1><p>좋은 아이디어가, 더 좋은 내일을 만듭니다.</p><div class="row"><a class="wj-button" href="#guide">브랜드 기준 확인하기 →</a><button class="wj-button wj-button--secondary" type="button" onclick="document.querySelector('#inquiry').focus()">문의 입력하기</button><button class="wj-button" disabled>비활성 상태</button></div></div>
+    <div class="wj-brand-art" aria-hidden="true"></div>
+    <div class="wj-grid" id="guide">
+      <article class="wj-card wj-stack"><h2 class="wj-heading">확정 팔레트</h2><div class="swatch" style="background:var(--wj-color-soft-mint)"></div><p>Soft Mint · #F2FFF4<br>넓은 배경과 여백 · 권장 40%</p><div class="swatch" style="background:var(--wj-color-key)"></div><p>Main Key · #ABFF48<br>작은 CTA와 포인트 · 권장 10%</p></article>
+      <article class="wj-card wj-stack"><h2 class="wj-heading">보조와 강조</h2><div class="swatch" style="background:var(--wj-color-medium-green)"></div><p>Medium Green · #6EE78D<br>보조 요소 · 권장 20%</p><div class="swatch" style="background:var(--wj-color-deep-green)"></div><p>Deep Green · #00866F<br>브랜드 강조 · 권장 30%</p></article>
+      <article class="wj-card wj-stack"><h2 class="wj-heading">UI 적용 예시</h2><label for="inquiry">문의 내용<input id="inquiry" class="wj-input" placeholder="프로젝트 내용을 입력하세요"></label><a class="wj-link" href="../DESIGN.md">디자인 계약 읽기</a><p class="caption">라임은 소량 강조에 사용합니다. 일반 본문은 차콜을 사용합니다. 원본 로고·사진·서체는 아직 포함하지 않았습니다.</p></article>
+    </div>
+  </div>
+</section>
+<section data-wj-brand data-wj-theme="dark" class="preview-section">
+  <div class="wj-container wj-stack"><div class="row"><strong>원정대</strong><span class="wj-badge">같은 토큰 · 다크</span></div><h2 class="wj-brand-heading">더 좋은 내일을 만듭니다.</h2><p>순검정 대신 #17332D를 바탕으로 사용합니다.</p><div class="wj-grid"><article class="wj-card wj-stack"><h2 class="wj-heading">브랜드의 일관성</h2><p>명확한 색 역할과 작은 라임 강조를 유지합니다.</p><div><a class="wj-button" href="#guide">브랜드 기준 확인하기 →</a></div></article><article class="wj-card wj-stack"><label for="dark-input">다크 테마 입력<input id="dark-input" class="wj-input" placeholder="키보드 Tab으로 포커스를 확인하세요"></label><a class="wj-link" href="../docs/APPLY.md">AI 적용 지침 보기</a><p class="caption">색 대비 테스트와 실제 브라우저 검증은 별개입니다. 이 파일은 두 테마의 확인용 예제입니다.</p></article></div></div>
+</section>
+</main>
+</body>
+</html>

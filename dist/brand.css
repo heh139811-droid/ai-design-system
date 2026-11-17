@@ -1,0 +1,57 @@
+/* Generated from tokens/brand.json. Run npm run build; do not edit. */
+@layer wj.tokens, wj.components;
+@layer wj.tokens {
+:root {
+  --wj-color-soft-mint: #F2FFF4;
+  --wj-color-key: #ABFF48;
+  --wj-color-medium-green: #6EE78D;
+  --wj-color-deep-green: #00866F;
+  --wj-color-soft-white: #F7FBF7;
+  --wj-color-charcoal: #17332D;
+  --wj-font-family: system-ui, -apple-system, 'Malgun Gothic', sans-serif;
+  --wj-radius-control: 0.75rem;
+  --wj-radius-card: 1.25rem;
+  --wj-radius-pill: 999px;
+  --wj-space-1: 0.25rem;
+  --wj-space-2: 0.5rem;
+  --wj-space-3: 0.75rem;
+  --wj-space-4: 1rem;
+  --wj-space-6: 1.5rem;
+  --wj-space-8: 2rem;
+  --wj-space-12: 3rem;
+  --wj-content-width: 72rem;
+  --wj-gradient: linear-gradient(120deg, var(--wj-color-soft-mint), var(--wj-color-key), var(--wj-color-medium-green), var(--wj-color-deep-green));
+}
+:where([data-wj-brand]) {
+  --wj-background: var(--wj-color-soft-white);
+  --wj-surface: var(--wj-color-soft-mint);
+  --wj-text: var(--wj-color-charcoal);
+  --wj-heading: var(--wj-color-charcoal);
+  --wj-link: var(--wj-color-charcoal);
+  --wj-accent: var(--wj-color-key);
+  --wj-on-accent: var(--wj-color-charcoal);
+  --wj-border: var(--wj-color-charcoal);
+  --wj-focus: var(--wj-color-charcoal);
+  --wj-brand: var(--wj-color-deep-green);
+  --wj-support: var(--wj-color-medium-green);
+  color-scheme: light;
+  color: var(--wj-text);
+  background-color: var(--wj-background);
+  font-family: var(--wj-font-family);
+  line-height: 1.6;
+}
+:where([data-wj-brand][data-wj-theme="dark"]) {
+  --wj-background: var(--wj-color-charcoal);
+  --wj-surface: var(--wj-color-charcoal);
+  --wj-text: var(--wj-color-soft-white);
+  --wj-heading: var(--wj-color-soft-mint);
+  --wj-link: var(--wj-color-medium-green);
+  --wj-accent: var(--wj-color-key);
+  --wj-on-accent: var(--wj-color-charcoal);
+  --wj-border: var(--wj-color-medium-green);
+  --wj-focus: var(--wj-color-key);
+  --wj-brand: var(--wj-color-deep-green);
+  --wj-support: var(--wj-color-medium-green);
+  color-scheme: dark;
+}
+}

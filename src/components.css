@@ -1,0 +1,21 @@
+/* Opt-in classes only. No global reset and no !important overrides. */
+@layer wj.components {
+  :where([data-wj-brand]) .wj-container { max-width: var(--wj-content-width); margin-inline: auto; padding: var(--wj-space-6); }
+  :where([data-wj-brand]) .wj-stack { display: grid; gap: var(--wj-space-4); }
+  :where([data-wj-brand]) .wj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--wj-space-6); }
+  :where([data-wj-brand]) .wj-card { padding: var(--wj-space-6); border: 1px solid var(--wj-border); border-radius: var(--wj-radius-card); background: var(--wj-surface); color: var(--wj-text); }
+  :where([data-wj-brand]) .wj-heading { color: var(--wj-heading); font-weight: 800; line-height: 1.2; text-wrap: balance; }
+  :where([data-wj-brand]) .wj-brand-heading { color: var(--wj-color-deep-green); font-size: 2rem; font-weight: 800; line-height: 1.2; }
+  :where([data-wj-brand][data-wj-theme="dark"]) .wj-brand-heading { color: var(--wj-color-medium-green); }
+  :where([data-wj-brand]) .wj-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--wj-space-2); min-height: 2.75rem; padding: var(--wj-space-2) var(--wj-space-6); border: 1px solid var(--wj-on-accent); border-radius: var(--wj-radius-pill); background: var(--wj-accent); color: var(--wj-on-accent); font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+  :where([data-wj-brand]) .wj-button--secondary { background: var(--wj-background); color: var(--wj-text); border-color: var(--wj-border); }
+  :where([data-wj-brand]) .wj-button:hover:not(:disabled) { text-decoration: underline; text-underline-offset: .2em; }
+  :where([data-wj-brand]) .wj-button:disabled { opacity: .5; cursor: not-allowed; }
+  :where([data-wj-brand]) .wj-input { box-sizing: border-box; width: 100%; min-height: 2.75rem; padding: var(--wj-space-3); border: 1px solid var(--wj-border); border-radius: var(--wj-radius-control); background: var(--wj-background); color: var(--wj-text); font: inherit; }
+  :where([data-wj-brand]) .wj-input::placeholder { color: var(--wj-text); opacity: 1; }
+  :where([data-wj-brand]) .wj-link { color: var(--wj-link); text-decoration: underline; text-underline-offset: .2em; }
+  :where([data-wj-brand]) :is(.wj-button,.wj-input,.wj-link):focus-visible { outline: 3px solid var(--wj-focus); outline-offset: 4px; }
+  :where([data-wj-brand]) .wj-badge { display: inline-block; padding: var(--wj-space-1) var(--wj-space-3); border-radius: var(--wj-radius-pill); background: var(--wj-support); color: var(--wj-color-charcoal); font-weight: 700; }
+  :where([data-wj-brand]) .wj-brand-art { min-height: 8rem; border-radius: var(--wj-radius-card); background: var(--wj-gradient); }
+  @media print { :where([data-wj-brand]) .wj-button { border: 1px solid currentColor; } }
+}
